@@ -1,6 +1,0 @@
-#!/bin/bash
-
-echo "myfirst git file"
-
-echo "modified"
-
