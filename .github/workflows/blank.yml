@@ -15,7 +15,7 @@ jobs:
        - name: testing ssh
          uses: appleboy/ssh-action@master
          with:
-           host: 192.168.1.20
+           host: 103.83.89.237
            username: majid
            key: ${{ MAJID_SSH_KEY }}
            port: 8010
