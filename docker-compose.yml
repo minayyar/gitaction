@@ -1,0 +1,62 @@
+version: '3.6'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+        - "80:80"
+    networks:
+        - php-net
+        - nginx-net
+    volumes:
+        - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        - ./core/wordpress:/var/www/html
+  wordpress:
+    image: wordpress:php8.1-fpm
+    container_name: wordpress
+    depends_on:
+        - mysql
+    environment:
+        - WORDPRESS_TABLE_PREFIX=wp_
+        - WORDPRESS_DB_NAME=wordpress
+        - WORDPRESS_DB_HOST=mysql
+        - WORDPRESS_DB_USER=wordpress
+        - WORDPRESS_DB_PASSWORD=password
+    volumes:
+        - ./config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+        - ./core/wordpress:/var/www/html
+    networks:
+        - php-net
+
+  mysql:
+    image: mysql
+    environment:
+         - MYSQL_ROOT_PASSWORD=password
+         - MYSQL_DATABASE=wordpress
+         - MYSQL_USER=admin
+         - MYSQL_PASSWORD=password
+         - MYSQL_ALLOW_EMPTY_PASSWORD=no
+    volumes:
+         - ./core/mysql:/var/lib/mysql
+    networks:
+        - nginx-net
+        - php-net
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    networks:
+        - nginx-net
+        - php-net
+    ports:
+        - 8081:80
+    environment:
+        PMA_HOST: mysql
+        PMA_PORT: 3306
+        MYSQL_USERNAME: admin
+        MYSQL_PASSWORD: password
+        PMA_ARBITRARY: 1
+networks:
+  php-net:
+  nginx-net:
+volumes:
+  wordpress: {}
+  mysql: {}
