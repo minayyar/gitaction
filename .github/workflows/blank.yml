@@ -17,9 +17,8 @@ jobs:
          with:
            host: 103.83.89.237
            username: majid
-           key: ${{ MAJID_SSH_KEY }}
+           key: ${{ secret.KEY }}
            port: 8010
            script:
              cd /home/majid/gitaction
-             git pull origin master
-             git status
+             git pull https://github.com/minayyar/gitaction.git
