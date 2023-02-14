@@ -12,7 +12,7 @@ jobs:
         with:
           host: 103.83.89.237
           username: majid
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ MAJID_SSH_KEY }}
           port: 8010
           script: cd /home/majid/gitaction
             git pull https://github.com/minayyar/gitaction.git
