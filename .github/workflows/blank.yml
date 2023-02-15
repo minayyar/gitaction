@@ -1,20 +1,16 @@
-name: Deploy on local
-on:
-  push:
-    branches: ["main"]
+name: remote ssh command
+on: [push]
 jobs:
-  job_one:
-    name: Deploy
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: testing ssh
-        uses: appleboy/ssh-action@master
-        with:
-          host: 103.83.89.237
-          username: majid
-          key: ${{ SECRETS_PRIVATE_KEY }}
-          port: 8010
-          script: cd /home/majid/gitaction
-            git pull https://github.com/minayyar/gitaction.git
-          
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: 103.83.89.237
+        username: majid
+        key: ${{ SECRETS_PRIVATE_KEY }}
+        port: 8010
+        script: sh mkdir.sh
