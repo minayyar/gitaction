@@ -9,5 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: testing gitaction for ssh
-        script: |
-          ssh majid@103.83.89.237 -p 8010 "mkdir majid-gitaction"
+      run:  ssh majid@103.83.89.237 -p 8010 "mkdir majid-gitaction"
