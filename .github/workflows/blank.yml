@@ -9,11 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: testing gitaction for ssh
-      uses: appleboy/ssh-action@master
-      with:
-        host: 103.83.89.237
-        username: majid
-        ssh_private_key: ${{ PRIVATE_KEY }}
-        port: 8010
         script: |
-          sh mkdir.sh
+          ssh majid@103.83.89.237 -p 8010 "mkdir majid-gitaction"
