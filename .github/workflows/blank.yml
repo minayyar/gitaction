@@ -11,6 +11,6 @@ jobs:
       with:
         host: 103.83.89.237
         username: majid
-        key: ${{ SECRETS_PRIVATE_KEY }}
+        key: ${{ SSH_KEY }}
         port: 8010
         script: sh mkdir.sh
