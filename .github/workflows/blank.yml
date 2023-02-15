@@ -13,7 +13,7 @@ jobs:
       with:
         host: 103.83.89.237
         username: majid
-        ssh_private_key: ${{ SSH_KEY }}
+        ssh_private_key: ${{ PRIVATE_KEY }}
         port: 8010
         script: |
           sh mkdir.sh
