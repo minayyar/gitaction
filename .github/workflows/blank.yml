@@ -1,16 +1,19 @@
 name: remote ssh command
-on: [push]
-jobs:
+on: 
+  push:
+    branches: [ main ]
 
-  build:
-    name: Build
+jobs:
+  job-one:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using ssh key
+    - name: testing gitaction for ssh
       uses: appleboy/ssh-action@master
       with:
         host: 103.83.89.237
         username: majid
         key: ${{ SSH_KEY }}
         port: 8010
-        script: sh mkdir.sh
+        script: |
+          sh mkdir.sh
