@@ -13,4 +13,4 @@ jobs:
         username: majid
         password: 1
         port: 8010
-        script: whoami
+        script: mkdir githubaction-check
