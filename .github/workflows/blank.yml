@@ -1,5 +1,8 @@
 name: remote ssh command
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
 
   build:
@@ -10,7 +13,8 @@ jobs:
       uses: appleboy/ssh-action@v0.1.7
       with:
         host: 103.83.89.237
-        username: majid
+        username: root
         password: 1
         port: 8010
-        script: mkdir githubaction-check
+        command: |
+         bash script.sh
