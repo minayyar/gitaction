@@ -17,6 +17,6 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
     - name: connect and pull
-      run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && mkdir asimtest"
+      run: ssh root@103.83.89.237 -p 8010 "cd /root/nginx-image && mkdir asimtest"
     - name: cleanup
       run: rm -rf ~/.ssh
