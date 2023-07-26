@@ -14,9 +14,9 @@ jobs:
       # https://stackoverflow.com/a/70447517
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        ssh-keyscan -p 8010 -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+        echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H 44.210.143.235 > ~/.ssh/known_hosts
     - name: connect and pull
-      run: ssh root@103.83.89.237 -p 8010 "cd /root/nginx-image && mkdir asimtest"
+      run: ssh ubuntu@44.210.143.235 -p 8010 "mkdir asimtest"
     - name: cleanup
       run: rm -rf ~/.ssh
