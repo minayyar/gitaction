@@ -17,6 +17,6 @@ jobs:
         echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan -H 44.210.143.235 > ~/.ssh/known_hosts
     - name: connect and pull
-      run: ssh ubuntu@44.210.143.235 -p 8010 "mkdir asimtest"
+      run: ssh ubuntu@44.210.143.235 "mkdir asimtest"
     - name: cleanup
       run: rm -rf ~/.ssh
