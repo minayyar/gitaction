@@ -9,14 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: install ssh keys
-      # check this thread to understand why its needed:
-      # https://stackoverflow.com/a/70447517
-      run: |
-        install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        ssh-keyscan -H 44.210.143.235 > ~/.ssh/known_hosts
-    - name: connect and pull
-      run: ssh ubuntu@44.210.143.235 "mkdir asimtest"
-    - name: cleanup
-      run: rm -rf ~/.ssh
+      - uses: actions/checkout@v2 
+      - name: Deploy in EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@44.210.143.235 "mkdir majid"
